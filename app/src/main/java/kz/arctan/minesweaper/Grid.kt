@@ -17,22 +17,17 @@ fun Grid(
     numberOfRows: Int,
     numberOfColumns: Int,
     gridData: Array<Array<CellData>>,
-    onCellClick: (Int, Int) -> Result,
 ) {
-    val opened = Array(gridData.size) { i ->
-        Array(gridData[0].size) { j ->
-            mutableStateOf(gridData[i][j].opened)
-        }
-    }
-    Column(verticalArrangement = Arrangement.spacedBy(1.dp),
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(1.dp),
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally) {
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         repeat(numberOfRows) { i ->
             Row(horizontalArrangement = Arrangement.spacedBy(1.dp)) {
                 repeat(numberOfColumns) { j ->
-                    Cell(gridData[i][j].value, opened[i][j].value, color = Color.Blue) {
-                        opened[i][j].value = onCellClick(i, j).toBoolean()
-                    }
+                    Cell(gridData[i][j].value, color = Color.Blue)
                 }
             }
         }
@@ -44,7 +39,9 @@ fun Grid(
 fun GridPreview() {
     val numberOfRows = 10
     val numberOfColumns = 10
-    Grid(numberOfRows,
+    Grid(
+        numberOfRows,
         numberOfColumns,
-        generateGrid(numberOfRows, numberOfColumns, 10)) { _, _ -> Result.Default }
+        generateGrid(numberOfRows, numberOfColumns, 10)
+    )
 }

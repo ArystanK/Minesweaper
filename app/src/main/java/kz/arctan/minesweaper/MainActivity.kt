@@ -38,7 +38,7 @@ fun MainScreen() {
             val numberOfRows = 10
             val numberOfColumns = 10
             val grid by remember { mutableStateOf(generateGrid(numberOfRows, numberOfColumns, 20)) }
-            Grid(numberOfRows, numberOfColumns, grid, onCellClick = grid::open)
+            Grid(numberOfRows, numberOfColumns, grid)
         }
     }
 }
